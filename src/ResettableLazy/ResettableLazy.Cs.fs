@@ -4,7 +4,6 @@ open System
 open System.Threading.Tasks
 open ResettableLazy
 
-
 type ResettableLazy<'T> private (valueFactory : unit -> Task<'T>, ignore) =
 
     let rl = Fs.ResettableLazy.createAsync (valueFactory >> Async.AwaitTask)
