@@ -25,3 +25,13 @@ type ResettableLazy<'T> private (valueFactory : unit -> Task<'T>, ignore) =
 
     member x.Reset () =
         Fs.ResettableLazy.reset rl
+
+
+[<AbstractClass; Sealed>]
+type ResettableLazy private () =
+
+    static member Create<'T>(valueFactory : Func<'T>) =
+       new ResettableLazy<'T>(valueFactory)
+
+    static member Create<'T>(valueFactory : Func<Task<'T>>) =
+       new ResettableLazy<'T>(valueFactory)
