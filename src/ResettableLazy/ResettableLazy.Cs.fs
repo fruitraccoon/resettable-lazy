@@ -1,10 +1,21 @@
 ﻿namespace ResettableLazy.Cs
 
+open System
+open System.Threading.Tasks
 open ResettableLazy
 
-type ResettableLazy<'T>(valueFactory) =
 
-    let rl = Fs.ResettableLazy.create valueFactory
+type ResettableLazy<'T> private (valueFactory : unit -> Task<'T>, ignore) =
+
+    let rl = Fs.ResettableLazy.createAsync (valueFactory >> Async.AwaitTask)
+
+    new (valueFactory : Func<'T>) =
+        let factory = fun () -> valueFactory.Invoke() |> Task.FromResult
+        ResettableLazy(factory, ())
+
+    new (valueFactory : Func<Task<'T>>) =
+        let factory = fun () -> valueFactory.Invoke()
+        ResettableLazy(factory, ())
 
     member x.IsValueCreated =
         Fs.ResettableLazy.isValueCreated rl |> Async.StartAsTask
