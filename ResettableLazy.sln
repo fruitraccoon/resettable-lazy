@@ -11,6 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{1DBB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResettableLazy.Cs.Tests", "src\ResettableLazy.Cs.Tests\ResettableLazy.Cs.Tests.csproj", "{C159B0EB-9275-43B7-9371-7B7E87E6D641}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{83415087-0542-44A0-A548-05D1F208160B}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		paket.dependencies = paket.dependencies
+		paket.lock = paket.lock
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
